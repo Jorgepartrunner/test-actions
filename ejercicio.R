@@ -16,10 +16,8 @@ library(jsonlite)
 library(httr)
 
 
-googledrive::drive_auth(path = "gg-ss-api-token.json",
-                        email = "j.castelan@partrunner.com")
-googlesheets4::gs4_auth(path = "gg-ss-api-token.json",
-                        email = "j.castelan@partrunner.com")
+googledrive::drive_auth(path = "key.json")
+googlesheets4::gs4_auth(token = googledrive::drive_token())
 
 
 googlesheets4::write_sheet(
