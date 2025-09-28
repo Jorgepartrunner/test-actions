@@ -1,0 +1,29 @@
+name: Run R Script
+
+on:
+  schedule:
+    - cron: "0 * * * *"   # corre cada hora (CRON formato UTC)
+  workflow_dispatch:       # permite lanzarlo manualmente
+
+jobs:
+  run-r:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install R packages
+        run: |
+          Rscript -e 'install.packages(c("lubridate","dplyr","dtplyr","tidyr","DBI","RMySQL","googlesheets4","gargle","readr","purrr","jsonlite","httr"))'
+
+      - name: Restore Google credentials
+        run: |
+          echo "${{ secrets.GCP_JSON }}" > gg-ss-api-token.json
+
+      - name: Run script
+        run: |
+          Rscript script.R
