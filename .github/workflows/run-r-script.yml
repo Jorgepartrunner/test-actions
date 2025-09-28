@@ -2,7 +2,7 @@ name: Run R Script
 
 on:
   schedule:
-    - cron: "0 * * * *"   # corre cada hora (CRON formato UTC)
+    - cron: "* * * * *"   # corre cada hora (CRON formato UTC)
   workflow_dispatch:       # permite lanzarlo manualmente
 
 jobs:
