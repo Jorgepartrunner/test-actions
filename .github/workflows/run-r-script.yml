@@ -22,7 +22,7 @@ jobs:
 
       - name: Restore Google credentials
         run: |
-          echo "${{ secrets.GCP_JSON }}" > gg-ss-api-token.json
+          echo "${{ secrets.GCP_JSON }}" > key.json
 
       - name: Run script
         run: |
